@@ -9,6 +9,7 @@
 
 <body>
     <script>
+        window.addEventListener('message', (event) => {/* store the data from this event in local state */});
         window.fbAsyncInit = function () {
             FB.init({
                 appId: '739074691523639',
@@ -18,6 +19,27 @@
             });
             console.log(FB);
         };
+
+const fbLoginCallback = (response) => {
+  if (response.authResponse) {
+    const code = response.authResponse.code;
+    // The returned code must be transmitted to your backend first and then
+    // perform a server-to-server call from there to our servers for an access token.
+  }
+}
+ const launchWhatsAppSignup = () => {
+  // Launch Facebook login
+  FB.login(fbLoginCallback, {
+    config_id: '1210443939946709', // configuration ID goes here
+    response_type: 'code', // must be set to 'code' for System User access token
+    override_default_response_type: true, // when true, any response types passed in the "response_type" will take precedence over the default types
+    extras: {
+      setup: {"business":{"id":null,"name":null,"email":null,"phone":{"code":null,"number":null},"website":null,"address":{"streetAddress1":null,"streetAddress2":null,"city":null,"state":null,"zipPostal":null,"country":null},"timezone":null},"phone":{"displayName":null,"category":null,"description":null},"preVerifiedPhone":{"ids":null},"solutionID":null,"whatsAppBusinessAccount":{"ids":null}},
+      featureType: '',
+      sessionInfoVersion: '2',
+    }
+  });
+}
 
         function login() {
             FB.login(function (response) {
@@ -35,7 +57,7 @@
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js">
     </script>
 
-    <button onclick="login()">Login</button>
+<button onclick="launchWhatsAppSignup()" style="background-color: #1877f2; border: 0; border-radius: 4px; color: #fff; cursor: pointer; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: bold; height: 40px; padding: 0 24px;">Login with Facebook</button>
 </body>
 
 </html>
