@@ -26,6 +26,9 @@ const fbLoginCallback = (response) => {
     const code = response.authResponse.code;
     // The returned code must be transmitted to your backend first and then
     // perform a server-to-server call from there to our servers for an access token.
+    console.log('Code recived ---------->',code);
+
+    // window.close();
   }
 }
  const launchWhatsAppSignup = () => {
